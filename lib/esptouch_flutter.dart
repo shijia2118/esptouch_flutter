@@ -44,6 +44,7 @@ class ESPTouchResult {
 
 const _eventChannel = EventChannel('eng.smaho.com/esptouch_plugin/results');
 
+
 /// Class to pass all required information to the platform-specific implementations
 /// to fire an ESP-Touch task.
 ///
@@ -250,4 +251,20 @@ class ESPTouchTaskParameter {
       expectedTaskResults: expectedTaskResults ?? this.expectedTaskResults,
     );
   }
+}
+
+
+class SimpleWifiInfo {
+  static const platform =
+  MethodChannel('eng.smaho.com/esptouch_plugin/example');
+
+  /// Get WiFi SSID using platform channels.
+  ///
+  /// Can return null if BSSID information is not available.
+  static Future<String?> get ssid => platform.invokeMethod('ssid');
+
+  /// Get WiFi BSSID using platform channels.
+  ///
+  /// Can return null if BSSID information is not available.
+  static Future<String?> get bssid => platform.invokeMethod('bssid');
 }
